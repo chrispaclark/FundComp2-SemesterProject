@@ -17,11 +17,21 @@
 
 // Tile properties
 #define TILE_SIDELENGTH 40	// Ensure that this is proportional to the screensize
+#define TILE_SS_SIDELENGTH 16
 
 #define TOTAL_TILES 192
-#define TYLE_TYPES 2
-#define TILE_BLUE 0
-#define TILE_RED 1
+#define TYLE_TYPES 9
+#define TILE_GREENGRASS 0
+#define TILE_BROWNGRASS 1
+#define TILE_FLOWER1 2
+#define TILE_DEFISH_TL 3
+#define TILE_DEFISH_TM 4
+#define TILE_DEFISH_TR 5
+#define TILE_DEFISH_BL 6
+#define TILE_DEFISH_BM 7
+#define TILE_DEFISH_BR 8
+
+
 
 using namespace std;
 

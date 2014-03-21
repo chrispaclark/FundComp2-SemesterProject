@@ -16,7 +16,7 @@
 
 using namespace std;
 
-// For some reason I don't understand, this is necessary
+// For some reason that I don't understand, this is necessary
 #undef main
 
 int main(void)

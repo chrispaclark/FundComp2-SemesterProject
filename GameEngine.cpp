@@ -12,7 +12,7 @@ GameEngine::GameEngine()
 		exit(1);
 	}
 	TileTexture.setRenderer(geRenderer);
-	TileTexture.loadFromFile("Images/red-blue-tileTex.png");
+	TileTexture.loadFromFile("Images/ZeldaBGSpriteSheet-LA.png");
 }
 
 GameEngine::~GameEngine()
@@ -177,15 +177,50 @@ int GameEngine::mapTiles(Tile* tiles[], SDL_Rect tileSprites[])
 		//Clip the sprite sheet
 		if (success)
 		{
-			tileSprites[TILE_BLUE].x = 0;
-			tileSprites[TILE_BLUE].y = 0;
-			tileSprites[TILE_BLUE].w = TILE_SIDELENGTH;
-			tileSprites[TILE_BLUE].h = TILE_SIDELENGTH;
+			tileSprites[TILE_GREENGRASS].x = 222;
+			tileSprites[TILE_GREENGRASS].y = 154;
+			tileSprites[TILE_GREENGRASS].w = TILE_SS_SIDELENGTH;
+			tileSprites[TILE_GREENGRASS].h = TILE_SS_SIDELENGTH;
 
-			tileSprites[TILE_RED].x = 200;
-			tileSprites[TILE_RED].y = 0;
-			tileSprites[TILE_RED].w = TILE_SIDELENGTH;
-			tileSprites[TILE_RED].h = TILE_SIDELENGTH;
+			tileSprites[TILE_BROWNGRASS].x = 239;
+			tileSprites[TILE_BROWNGRASS].y = 154;
+			tileSprites[TILE_BROWNGRASS].w = TILE_SS_SIDELENGTH;
+			tileSprites[TILE_BROWNGRASS].h = TILE_SS_SIDELENGTH;
+
+			tileSprites[TILE_FLOWER1].x = 273;
+			tileSprites[TILE_FLOWER1].y = 256;
+			tileSprites[TILE_FLOWER1].w = TILE_SS_SIDELENGTH;
+			tileSprites[TILE_FLOWER1].h = TILE_SS_SIDELENGTH;
+	
+			tileSprites[TILE_DEFISH_TL].x = 35;
+			tileSprites[TILE_DEFISH_TL].y = 52;
+			tileSprites[TILE_DEFISH_TL].w = TILE_SS_SIDELENGTH;
+			tileSprites[TILE_DEFISH_TL].h = TILE_SS_SIDELENGTH;
+
+			tileSprites[TILE_DEFISH_TM].x = 35+17;
+			tileSprites[TILE_DEFISH_TM].y = 52;
+			tileSprites[TILE_DEFISH_TM].w = TILE_SS_SIDELENGTH;
+			tileSprites[TILE_DEFISH_TM].h = TILE_SS_SIDELENGTH;
+
+			tileSprites[TILE_DEFISH_TR].x = 35+17+17;
+			tileSprites[TILE_DEFISH_TR].y = 52;
+			tileSprites[TILE_DEFISH_TR].w = TILE_SS_SIDELENGTH;
+			tileSprites[TILE_DEFISH_TR].h = TILE_SS_SIDELENGTH;
+
+			tileSprites[TILE_DEFISH_BL].x = 35;
+			tileSprites[TILE_DEFISH_BL].y = 52+17;
+			tileSprites[TILE_DEFISH_BL].w = TILE_SS_SIDELENGTH;
+			tileSprites[TILE_DEFISH_BL].h = TILE_SS_SIDELENGTH;
+
+			tileSprites[TILE_DEFISH_BM].x = 35+17;
+			tileSprites[TILE_DEFISH_BM].y = 52+17;
+			tileSprites[TILE_DEFISH_BM].w = TILE_SS_SIDELENGTH;
+			tileSprites[TILE_DEFISH_BM].h = TILE_SS_SIDELENGTH;
+
+			tileSprites[TILE_DEFISH_BR].x = 35+17+17;
+			tileSprites[TILE_DEFISH_BR].y = 52+17;
+			tileSprites[TILE_DEFISH_BR].w = TILE_SS_SIDELENGTH;
+			tileSprites[TILE_DEFISH_BR].h = TILE_SS_SIDELENGTH;
 		}
 	}
 
@@ -232,7 +267,7 @@ void GameEngine::play()
 		renderBackground(tileSet, tileSprites);
 
 		// Draw green square (just because.... green is cool)
-		drawSomething();
+		// drawSomething();
 
 		// Update Window
 		SDL_RenderPresent(geRenderer);
