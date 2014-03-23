@@ -31,6 +31,11 @@ int Tile::getTileType()
 	return tileType;
 }
 
+void Tile::setTileType(int type)
+{
+	tileType = type;
+}
+
 SDL_Rect Tile::getRect()
 {
 	return tileDimensions;
