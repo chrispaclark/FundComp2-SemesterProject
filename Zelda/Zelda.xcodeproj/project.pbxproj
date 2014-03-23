@@ -13,6 +13,8 @@
 		400F13AB18D6860C00436102 /* Boundary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 400F13A418D6860B00436102 /* Boundary.cpp */; };
 		400F13AC18D6860C00436102 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 400F13A618D6860B00436102 /* Player.cpp */; };
 		400F13AD18D6860C00436102 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 400F13A818D6860C00436102 /* Sprite.cpp */; };
+		4033CE3718DF6B9800C8991F /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4033CE3518DF6B9800C8991F /* Map.cpp */; };
+		4033CE3D18DF6BE400C8991F /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4033CE3B18DF6BE400C8991F /* Tile.cpp */; };
 		40365B5218D730CD007AEA7F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40365B5118D730CD007AEA7F /* Cocoa.framework */; };
 		40365B5518D730D6007AEA7F /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40365B5318D730D6007AEA7F /* SDL2_image.framework */; };
 		40365B5618D730D6007AEA7F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40365B5418D730D6007AEA7F /* SDL2.framework */; };
@@ -43,6 +45,10 @@
 		400F13A718D6860C00436102 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = Objects/Player.h; sourceTree = "<group>"; };
 		400F13A818D6860C00436102 /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sprite.cpp; path = Objects/Sprite.cpp; sourceTree = "<group>"; };
 		400F13A918D6860C00436102 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprite.h; path = Objects/Sprite.h; sourceTree = "<group>"; };
+		4033CE3518DF6B9800C8991F /* Map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Map.cpp; path = Objects/Map.cpp; sourceTree = "<group>"; };
+		4033CE3618DF6B9800C8991F /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Map.h; path = Objects/Map.h; sourceTree = "<group>"; };
+		4033CE3B18DF6BE400C8991F /* Tile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Tile.cpp; path = Objects/Tile.cpp; sourceTree = "<group>"; };
+		4033CE3C18DF6BE400C8991F /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tile.h; path = Objects/Tile.h; sourceTree = "<group>"; };
 		40365B5118D730CD007AEA7F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		40365B5318D730D6007AEA7F /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		40365B5418D730D6007AEA7F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
@@ -87,6 +93,10 @@
 				400F13A218D6860B00436102 /* AnimatedSprite.cpp */,
 				400F13A318D6860B00436102 /* AnimatedSprite.h */,
 				400F13A418D6860B00436102 /* Boundary.cpp */,
+				4033CE3518DF6B9800C8991F /* Map.cpp */,
+				4033CE3618DF6B9800C8991F /* Map.h */,
+				4033CE3B18DF6BE400C8991F /* Tile.cpp */,
+				4033CE3C18DF6BE400C8991F /* Tile.h */,
 				400F13A518D6860B00436102 /* Boundary.h */,
 				400F13A618D6860B00436102 /* Player.cpp */,
 				400F13A718D6860C00436102 /* Player.h */,
@@ -149,11 +159,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4033CE3718DF6B9800C8991F /* Map.cpp in Sources */,
 				400F13AC18D6860C00436102 /* Player.cpp in Sources */,
 				400F139A18D6857800436102 /* main.cpp in Sources */,
 				400F13AD18D6860C00436102 /* Sprite.cpp in Sources */,
 				400F13AB18D6860C00436102 /* Boundary.cpp in Sources */,
 				400F13AA18D6860C00436102 /* AnimatedSprite.cpp in Sources */,
+				4033CE3D18DF6BE400C8991F /* Tile.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

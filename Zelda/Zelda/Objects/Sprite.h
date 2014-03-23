@@ -8,6 +8,7 @@
 #define __Zelda__Sprite__
 #include <iostream>
 #include "Boundary.h"
+#include "Tile.h"
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
 
@@ -67,6 +68,7 @@ public:
     void setBounds(int,int,int,int); 
     Boundary getBounds();
     int collidesWith(Sprite);
+    int collidesWith(Tile*);
     int isColliding();
     
 
@@ -103,7 +105,6 @@ protected:
     int width;
     int height;
     bool alive;
-    int orientation; //Left/right/up/down/etc
     int colliding;
     Boundary bounds;
 

@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "SDL2/SDL.h" 
+#include "Map.h"
 #include "Player.h"
 #include "AnimatedSprite.h"
 using namespace std;
@@ -22,15 +23,20 @@ int main(){
     rend = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
     int gameOver = 0;
 
-    AnimatedSprite link;
+    Player link;
     link.setSource(0,0,43,49);
-    link.setScreenLocation(40,40);
-    link.setCanvasLocation(40,40);
+    link.setScreenLocation(300,40);
+    link.setCanvasLocation(300,40);
     link.setRenderer(rend);
     link.loadIMGForTexture("/Users/johnlake/Documents/Programming/C/CPP/Zelda/Zelda/Sprites/Link.png");
     link.setSize(43,49);
     link.setNumFrames(2);
     link.setSpriteRow(0);
+
+    Map m;
+    m.setRenderer(rend);
+    m.initializeTileSprites();
+    m.mapTiles("/Users/johnlake/Documents/Programming/C/CPP/Zelda/Zelda/Other/rbTileMap.map");
 
         //y  4   53   102   151   200 249 298
         //x  3   46   89    132   175
@@ -38,6 +44,7 @@ int main(){
 
     while(!gameOver){
                 SDL_RenderClear(rend);
+        m.renderBackground();
         while(SDL_PollEvent(&e)){
             switch(e.type) {
                 case SDL_QUIT:
@@ -105,12 +112,16 @@ int main(){
 
             }
         }
-        cout << link.getSource().y << endl;
+
         link.updatePosition();
+        if(m.touchesWall(link)){
+            link.undoUpdatePosition();
+            link.setVel(0,0);
+        }
         link.updateFrame();
         link.renderSprite();
         SDL_RenderPresent(rend);
-        SDL_Delay(2);
+            // SDL_Delay(2);
     }
 
     SDL_Quit();

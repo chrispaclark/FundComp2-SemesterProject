@@ -9,6 +9,7 @@
 #include "SDL2_image/SDL_image.h"
 #include <iostream>
 #include "Boundary.h"
+#include "Tile.h"
 using namespace std;
 
 Sprite::Sprite(){
@@ -68,6 +69,13 @@ int Sprite::collidesWith(Sprite other){
     colliding =0; 
        return 0;
 
+}
+
+int Sprite::collidesWith(Tile *other){
+    if(bounds.collidesWith(other->getBounds())){
+        return 1;
+    }
+    return 0; 
 }
 
 

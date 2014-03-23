@@ -14,15 +14,10 @@
 
 class Player : public AnimatedSprite{
 public:
-    Player(); 
-    void jump();
-    int jumpOver();
-    void updatePosition();
+
+
     void undoUpdatePosition();
-    int isJumping(); 
-    void fall(int grav);
-    void setPlatform(int);
-    int getPlatform(); 
+
     
 private:
     bool hasJumped;
