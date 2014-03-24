@@ -11,6 +11,7 @@
 #include "Map.h"
 #include "Player.h"
 #include "AnimatedSprite.h"
+#include "Music.h"
 using namespace std;
 
 
@@ -28,7 +29,7 @@ int main(){
     link.setScreenLocation(300,40);
     link.setCanvasLocation(300,40);
     link.setRenderer(rend);
-    link.loadIMGForTexture("/Users/johnlake/Documents/Programming/C/CPP/Zelda/Zelda/Sprites/Link.png");
+    link.loadIMGForTexture("/Users/christianclark/Desktop/FundComp2-SemesterProject/Zelda/Zelda/Sprites/Link.png");
     link.setSize(43,49);
     link.setNumFrames(2);
     link.setSpriteRow(0);
@@ -36,8 +37,14 @@ int main(){
     Map m;
     m.setRenderer(rend);
     m.initializeTileSprites();
-    m.mapTiles("/Users/johnlake/Documents/Programming/C/CPP/Zelda/Zelda/Other/rbTileMap.map");
+    m.mapTiles("/Users/christianclark/Desktop/FundComp2-SemesterProject/Zelda/Zelda/Other/rbTileMap.map");
 
+    //instantiate background music object
+    Music LostWoods;
+    
+    //play background music
+    LostWoods.play();
+    
         //y  4   53   102   151   200 249 298
         //x  3   46   89    132   175
 
@@ -122,6 +129,15 @@ int main(){
         link.renderSprite();
         SDL_RenderPresent(rend);
             // SDL_Delay(2);
+        
+        //Check if music is still playing or not
+        //If there is no music playing
+        if( Mix_PlayingMusic() == 0 )
+        {
+            //Play the music
+            LostWoods.play();
+        }
+
     }
 
     SDL_Quit();

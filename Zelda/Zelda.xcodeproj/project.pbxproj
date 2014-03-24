@@ -18,6 +18,8 @@
 		40365B5218D730CD007AEA7F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40365B5118D730CD007AEA7F /* Cocoa.framework */; };
 		40365B5518D730D6007AEA7F /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40365B5318D730D6007AEA7F /* SDL2_image.framework */; };
 		40365B5618D730D6007AEA7F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40365B5418D730D6007AEA7F /* SDL2.framework */; };
+		C338641518E00C5600714F33 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C338641418E00C5600714F33 /* SDL2_mixer.framework */; };
+		C338641818E00D9700714F33 /* Music.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C338641618E00D9700714F33 /* Music.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +54,9 @@
 		40365B5118D730CD007AEA7F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		40365B5318D730D6007AEA7F /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		40365B5418D730D6007AEA7F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		C338641418E00C5600714F33 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
+		C338641618E00D9700714F33 /* Music.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Music.cpp; sourceTree = "<group>"; };
+		C338641718E00D9700714F33 /* Music.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Music.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C338641518E00C5600714F33 /* SDL2_mixer.framework in Frameworks */,
 				40365B5518D730D6007AEA7F /* SDL2_image.framework in Frameworks */,
 				40365B5618D730D6007AEA7F /* SDL2.framework in Frameworks */,
 				40365B5218D730CD007AEA7F /* Cocoa.framework in Frameworks */,
@@ -71,6 +77,7 @@
 		400F138D18D6857800436102 = {
 			isa = PBXGroup;
 			children = (
+				C338641418E00C5600714F33 /* SDL2_mixer.framework */,
 				40365B5318D730D6007AEA7F /* SDL2_image.framework */,
 				40365B5418D730D6007AEA7F /* SDL2.framework */,
 				40365B5118D730CD007AEA7F /* Cocoa.framework */,
@@ -103,6 +110,8 @@
 				400F13A818D6860C00436102 /* Sprite.cpp */,
 				400F13A918D6860C00436102 /* Sprite.h */,
 				400F139918D6857800436102 /* main.cpp */,
+				C338641618E00D9700714F33 /* Music.cpp */,
+				C338641718E00D9700714F33 /* Music.h */,
 				400F139B18D6857800436102 /* Zelda.1 */,
 			);
 			path = Zelda;
@@ -162,6 +171,7 @@
 				4033CE3718DF6B9800C8991F /* Map.cpp in Sources */,
 				400F13AC18D6860C00436102 /* Player.cpp in Sources */,
 				400F139A18D6857800436102 /* main.cpp in Sources */,
+				C338641818E00D9700714F33 /* Music.cpp in Sources */,
 				400F13AD18D6860C00436102 /* Sprite.cpp in Sources */,
 				400F13AB18D6860C00436102 /* Boundary.cpp in Sources */,
 				400F13AA18D6860C00436102 /* AnimatedSprite.cpp in Sources */,

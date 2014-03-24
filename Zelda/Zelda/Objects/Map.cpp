@@ -80,7 +80,7 @@ int Map::mapTiles(const string s)
 
 void Map::initializeTileSprites(){
 
-    tileSetSS = IMG_LoadTexture(r,"/Users/johnlake/Documents/Programming/C/CPP/Zelda/Zelda/Sprites/ZeldaBGSpriteSheet-LA.png");
+    tileSetSS = IMG_LoadTexture(r,"/Users/christianclark/Desktop/FundComp2-SemesterProject/Zelda/Zelda/Sprites/ZeldaBGSpriteSheet-LA.png");
 
     tileSprites[TILE_GREENGRASS].x = 222;
     tileSprites[TILE_GREENGRASS].y = 154;
