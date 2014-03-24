@@ -21,26 +21,25 @@ public:
     Sprite();
     ~Sprite();
 
-
-        //Size of Sprite
+    //Size of Sprite
     void setSize(int,int); 
     void setWidth(int);
     void setHeight(int);
     int getWidth();
     int getHeight();
 
-        //If the sprite is alive or not
+    //If the sprite is alive or not
     void setIsAlive(bool);
     bool isAlive();
 
-        //Location of sprite on SCREEN
+    //Location of sprite on SCREEN
     void setScreenLocation(int,int);
     void setXScreenLocation(int);
     void setYScreenLocation(int);
     int getXScreenLocation();
     int getYScreenLocation();
 
-        //Location of the sprite in the LEVEL
+    //Location of the sprite in the LEVEL
     void setCanvasLocation(int,int);
     void setXCanvasLocation(int);
     void setYCanvasLocation(int);
@@ -48,14 +47,14 @@ public:
     int getYCanvasLocation();
 
 
-        //Velocity of the sprite
+    //Velocity of the sprite
     void setXVel(int);
     void setYVel(int);
     void setVel(int,int);
     int getXVel();
     int getYVel();
 
-        //Acceleration of the sprite
+    //Acceleration of the sprite
     void setXAcc(int);
     void setYAcc(int);
     void setAcc(int,int);
@@ -64,7 +63,7 @@ public:
     void updatePosition();
     void undoUpdatePosition();
 
-        //Collision Detection
+    //Collision Detection
     void setBounds(int,int,int,int); 
     Boundary getBounds();
     int collidesWith(Sprite);
@@ -73,27 +72,27 @@ public:
     
 
 
-        //Loading Textures from files
+    //Loading Textures from files
     void loadBMPForTexture(const char * file);
     void loadIMGForTexture(const char * file);
 
-        //Drawing to the screen:
+    //Drawing to the screen:
     void setRenderer(SDL_Renderer *r); 
     void renderSprite();
     void setDest(int,int,int,int);//Set the x,y,w,h of the destination Sprite
 
-        //Flipping of the Sprite
+    //Flipping of the Sprite
     void setFlip(SDL_RendererFlip);
     SDL_RendererFlip getFlip();
 
 
-        //Source/Destination Rectangles
+    //Source/Destination Rectangles
     SDL_Rect getSource();
     SDL_Rect getDest();   //Dest will use screen locations
     void setSource(int,int,int,int); //Set the x,y,w,h part of the source file to get the image.
 
 protected:
-        //State variables (Location, size, etc.)
+    //State variables (Location, size, etc.)
     int xScreen;
     int yScreen;
     int xCanvas;
@@ -116,4 +115,5 @@ protected:
     SDL_RendererFlip flip;
     SDL_Texture *tex;  //What the sprite looks like
     };
+
 #endif /* defined(__HeatTransfer__Sprite__) */

@@ -14,13 +14,14 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
-Map::Map(SDL_Renderer* geRenderer)
+Map::Map()
 {
-	// Set up map renderer
-	setRenderer(geRenderer);
-
-	// Load the texture to be used as the tile sprite sheet
-	tileSetSS = IMG_LoadTexture(geTileRenderer, "Sprites/ZeldaBGSpriteSheet-LA.png");
+	//// Load the texture to be used as the tile sprite sheet
+	//tileSetSS = IMG_LoadTexture(geTileRenderer, "Sprites/ZeldaBGSpriteSheet-LA.png");
+	//if (tileSetSS == nullptr)
+	//{
+	//	cout << "Error loading Tile Sprite Sheet! " << SDL_GetError() << endl;
+	//}
 
 	// Define the the locations of the tile sprites on the SS
 	initializeTileSprites();
@@ -367,13 +368,18 @@ int Map::touchesWall(Player &p){
 void Map::setRenderer(SDL_Renderer *ren)
 {
 	//Points the map renderer to the GameEngine Renderer passed in
-    this->geTileRenderer = ren;
+    geTileRenderer = ren;
 }
 
 void Map::renderBackground()
 {
     for (int i = 0; i < TOTAL_TILES; i++)
     {
-        SDL_RenderCopy(geTileRenderer, tileSetSS, &tileSprites[tiles[i]->getTileType()], tiles[i]->getRect());
+        SDL_RenderCopy(geTileRenderer, tileSetSS.getTexture(), &tileSprites[tiles[i]->getTileType()], tiles[i]->getRect());
     }
+}
+
+MyTexture Map::getTextureWrap()
+{
+	return tileSetSS;
 }

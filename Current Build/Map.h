@@ -9,17 +9,20 @@
 #ifndef __Zelda__Map__
 #define __Zelda__Map__
 
+#include <string>
 #include <iostream>
+
 #include "Player.h"
 #include "Tile.h"
-#include <string>
+#include "MyTexture.h"
+
 
 
 class Map{
 
 public:
 	// Constructor Initializes tile locations on SS
-	Map(SDL_Renderer*);
+	Map();
 
 	// Set the renderer that will be used by the map class
     void setRenderer(SDL_Renderer*);
@@ -36,6 +39,9 @@ public:
 	// Checks to see if the player is touching a wall tile
     int touchesWall(Player&);
 
+	//Get/Set Fns
+	MyTexture getTextureWrap();
+
 private:
 	// Stores the tile map (drawn to screen)
     Tile * tiles[TOTAL_TILES];
@@ -47,7 +53,7 @@ private:
     SDL_Renderer *geTileRenderer;
 
 	// SDL_Texture that holds the Tile SS
-    SDL_Texture *tileSetSS;
+    MyTexture tileSetSS;
     
 };
 

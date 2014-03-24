@@ -4,7 +4,6 @@
 //
 //  Created by John Lake on 3/14/14.
 //  Copyright (c) 2014 John Lake. All rights reserved.
-//
 
 #include "Player.h"
 #include <iostream> 
@@ -16,7 +15,7 @@ Player::Player()
 
 }
 
-    //Used in collisions, so that a sprite doesn't get stuck in a wall.
+//Used in collisions, so that a sprite doesn't get stuck in a wall.
 void Player::undoUpdatePosition(){
     xScreen -= xVel;
     yScreen -= yVel;

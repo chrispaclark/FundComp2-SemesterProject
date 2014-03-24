@@ -4,9 +4,12 @@
 //
 //  Copyright (c) 2014 John Lake. All rights reserved.
 //
+
+#include <iostream> 
+
 #include "Sprite.h"
 #include "AnimatedSprite.h"
-#include <iostream> 
+
 using namespace std; 
 
 AnimatedSprite::AnimatedSprite()
@@ -16,11 +19,13 @@ AnimatedSprite::AnimatedSprite()
 }
 
     //Used for animation.  UPDATE ACCORDINGLY.
-void AnimatedSprite::setNumFrames(int n){
+void AnimatedSprite::setNumFrames(int n)
+{
     numFrames = n;
 }
 
-void AnimatedSprite::updateFrame(){
+void AnimatedSprite::updateFrame()
+{
     frame++;
     if(frame>=numFrames) frame=0;
     src.x = src.w * int(((SDL_GetTicks()/100) % numFrames));
@@ -28,20 +33,21 @@ void AnimatedSprite::updateFrame(){
 
 
 
-void AnimatedSprite::setSpriteRow(int s){
+void AnimatedSprite::setSpriteRow(int s)
+{
     spriteRow = s;
     src.y = src.h*spriteRow;
 }
 
 
 
-int AnimatedSprite::getSpriteRow(){
+int AnimatedSprite::getSpriteRow()
+{
     return spriteRow;
 }
 
-int AnimatedSprite::getNumFrames(){
-
+int AnimatedSprite::getNumFrames()
+{
     return numFrames;
-
 }
 

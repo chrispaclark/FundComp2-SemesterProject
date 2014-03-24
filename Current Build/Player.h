@@ -12,7 +12,8 @@
 #include <iostream>
 #include "AnimatedSprite.h"
 
-class Player : public AnimatedSprite{
+class Player : public AnimatedSprite
+{
 public:
 	// Constructor
 	Player();

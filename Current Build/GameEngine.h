@@ -24,6 +24,8 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
+#define PLAYER_VEL 4
+
 using namespace std;
 
 class GameEngine
@@ -65,6 +67,9 @@ private:
 
 	// Player character animated sprite
 	Player Link;
+
+	// Map object for loading levels
+	Map Background;
 	
 	// Background Music
 	Music LostWoods;

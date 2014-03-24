@@ -12,7 +12,13 @@ GameEngine::GameEngine()
 		cout << "Error Initializing GameEngine Class Object!!!" << endl;
 		exit(1);
 	}
+	// Set up player renderer
 	Link.setRenderer(geRenderer);
+
+	Background.getTextureWrap().loadFromFile("Sprites/ZeldaBGSpriteSheet-LA.png");
+	
+	// Set up map renderer
+	Background.setRenderer(geRenderer);
 }
 
 GameEngine::~GameEngine()
@@ -44,7 +50,7 @@ int GameEngine::initialize()
 	}
 	else
 	{
-		//Enable VSync
+		//Enable VSync -- NOTE! slows down game ( a lot! )
 		if (!SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1"))
 		{
 			printf("Warning: VSync not enabled!");
@@ -100,10 +106,7 @@ SDL_Renderer* GameEngine::getRenderer()
 
 void GameEngine::play()
 {
-	// Initialize SDL_Event to handle user input to game
-	SDL_Event e;
-	
-	// Initialize game-ending variable
+		// Initialize game-ending variable
 	int gameOver = 0;
 
 	Link.setSource(0, 0, 43, 49);
@@ -116,93 +119,118 @@ void GameEngine::play()
 	Link.setNumFrames(2);
 	Link.setSpriteRow(0);
 
-	Map Background(geRenderer);
-
 	Background.mapTiles("Other/rbTileMap.map");
 
 	//play background music
 	LostWoods.play();
 
-	while (!gameOver){
+	// Initialize SDL_Event to handle user input to game
+	SDL_Event e;
+
+	// while loop will run until it receives a gameOver signal (program shuts down)
+	while (!gameOver)
+	{
+		// Clear renderer for latest frame
 		SDL_RenderClear(geRenderer);
+
+		// Render background from tile map
 		Background.renderBackground();
-		while (SDL_PollEvent(&e)){
-			switch (e.type) {
+
+		// Process all SDL_Events
+		while (SDL_PollEvent(&e))
+		{
+			switch (e.type) 
+			{
+			// If red x button hit, quit game
 			case SDL_QUIT:
 				gameOver = 1;
 				break;
+			// If a key is pressed increase respective velocity
 			case SDL_KEYDOWN:
-				switch (e.key.keysym.sym){
-
+				switch (e.key.keysym.sym)
+				{
 				case SDLK_LEFT:
-					Link.setXVel(-1);
+					Link.setXVel(-PLAYER_VEL);
 					Link.setSpriteRow(5);
 					Link.setNumFrames(10);
 					break;
 				case SDLK_RIGHT:
-					Link.setXVel(1);
+					Link.setXVel(PLAYER_VEL);
 					Link.setSpriteRow(7);
 					Link.setNumFrames(10);
 					break;
 				case SDLK_UP:
-					Link.setYVel(-1);
+					Link.setYVel(-PLAYER_VEL);
 					Link.setSpriteRow(6);
 					Link.setNumFrames(10);
 					break;
 				case SDLK_DOWN:
-					Link.setYVel(1);
+					Link.setYVel(PLAYER_VEL);
 					Link.setSpriteRow(4);
 					Link.setNumFrames(10);
-
 					break;
 				}
 				break;
+			// If a key is pressed reset respective velocity
 			case SDL_KEYUP:
-				switch (e.key.keysym.sym){
-
+				switch (e.key.keysym.sym)
+				{
 				case SDLK_LEFT:
-					if (Link.getXVel()<0){
+					if (Link.getXVel()<0)
 						Link.setXVel(0);
-					}
 					Link.setSpriteRow(1);
 					Link.setNumFrames(3);
 					break;
+
 				case SDLK_RIGHT:
-					if (Link.getXVel()>0){
+					if (Link.getXVel()>0)
 						Link.setXVel(0);
-					}
 					Link.setSpriteRow(3);
 					Link.setNumFrames(3);
 					break;
+
 				case SDLK_UP:
-					if (Link.getYVel()<0){
+					if (Link.getYVel()<0)
 						Link.setYVel(0);
-					}
+					
 					Link.setNumFrames(1);
 					Link.setSpriteRow(2);
 					break;
+
 				case SDLK_DOWN:
-					if (Link.getYVel()>0){
+					if (Link.getYVel()>0)
 						Link.setYVel(0);
-					}
 					Link.setSpriteRow(0);
 					Link.setNumFrames(3);
 					break;
+
+
 				}
 				break;
 
 			}
-		}
-
+		}	// end of event handling while loop
+		
+		// Update links position on the screen
 		Link.updatePosition();
-		if (Background.touchesWall(Link)){
+
+		// if something is in link's way, stop him from moving through it
+		if (Background.touchesWall(Link))
+		{
 			Link.undoUpdatePosition();
 			Link.setVel(0, 0);
 		}
+
 		Link.updateFrame();
+
+
+
+		// Render Player to the screen
 		Link.renderSprite();
+
+		// Push renderer to the window
 		SDL_RenderPresent(geRenderer);
-		// SDL_Delay(2);
+		
 
 		//Check if music is still playing or not
 		//If there is no music playing
