@@ -15,10 +15,14 @@ GameEngine::GameEngine()
 	// Set up player renderer
 	Link.setRenderer(geRenderer);
 
-	Background.getTextureWrap().loadFromFile("Sprites/ZeldaBGSpriteSheet-LA.png");
-	
 	// Set up map renderer
 	Background.setRenderer(geRenderer);
+
+	// Load the tiles image into a texture
+	Background.loadFromFile("Sprites/ZeldaBGSpriteSheet-LA.png");
+
+	//Load the sprite sheet image for Link into a texture
+	Link.loadIMGForTexture("Sprites/Link.png");
 }
 
 GameEngine::~GameEngine()
@@ -29,13 +33,10 @@ GameEngine::~GameEngine()
 
 	geRenderer = nullptr;
 	geWindow = nullptr;
-}
 
-void GameEngine::logSDLError(ostream &os, const string &msg)
-{
-	os << msg << " error: " << SDL_GetError() << endl;
+	IMG_Quit();
+	SDL_Quit();
 }
-
 
 int GameEngine::initialize()
 {
@@ -95,6 +96,7 @@ int GameEngine::initialize()
 			}
 		}
 	}
+
 	return success;
 }
 
@@ -106,15 +108,14 @@ SDL_Renderer* GameEngine::getRenderer()
 
 void GameEngine::play()
 {
-		// Initialize game-ending variable
+	// Initialize game-ending variable
 	int gameOver = 0;
+
 
 	Link.setSource(0, 0, 43, 49);
 	Link.setScreenLocation(300, 40);
 	Link.setCanvasLocation(300, 40);
 
-	Link.setRenderer(geRenderer);
-	Link.loadIMGForTexture("Sprites/Link.png");
 	Link.setSize(43, 48);
 	Link.setNumFrames(2);
 	Link.setSpriteRow(0);
@@ -130,12 +131,6 @@ void GameEngine::play()
 	// while loop will run until it receives a gameOver signal (program shuts down)
 	while (!gameOver)
 	{
-		// Clear renderer for latest frame
-		SDL_RenderClear(geRenderer);
-
-		// Render background from tile map
-		Background.renderBackground();
-
 		// Process all SDL_Events
 		while (SDL_PollEvent(&e))
 		{
@@ -171,6 +166,7 @@ void GameEngine::play()
 					break;
 				}
 				break;
+
 			// If a key is pressed reset respective velocity
 			case SDL_KEYUP:
 				switch (e.key.keysym.sym)
@@ -203,8 +199,6 @@ void GameEngine::play()
 					Link.setSpriteRow(0);
 					Link.setNumFrames(3);
 					break;
-
-
 				}
 				break;
 
@@ -223,15 +217,21 @@ void GameEngine::play()
 
 		Link.updateFrame();
 
+		// Set render clear color to black
+		SDL_SetRenderDrawColor(geRenderer, 0, 0, 0, 255);
 
+		// Clear renderer for latest frame
+		SDL_RenderClear(geRenderer);
+
+		// Render background from tile map
+		Background.renderBackground();
 
 		// Render Player to the screen
 		Link.renderSprite();
 
 		// Push renderer to the window
 		SDL_RenderPresent(geRenderer);
-		
-
+	
 		//Check if music is still playing or not
 		//If there is no music playing
 		if (Mix_PlayingMusic() == 0)
@@ -239,9 +239,5 @@ void GameEngine::play()
 			//Play the music
 			LostWoods.play();
 		}
-
 	}
-
-	SDL_Quit();
-	
 }

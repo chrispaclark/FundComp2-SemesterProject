@@ -15,8 +15,7 @@
 #include "Player.h"
 #include "Tile.h"
 #include "MyTexture.h"
-
-
+#include "Functions.h"
 
 class Map{
 
@@ -39,12 +38,12 @@ public:
 	// Checks to see if the player is touching a wall tile
     int touchesWall(Player&);
 
-	//Get/Set Fns
-	MyTexture getTextureWrap();
+	// Load image file for background texture
+	int loadFromFile(string);
 
 private:
 	// Stores the tile map (drawn to screen)
-    Tile * tiles[TOTAL_TILES];
+    Tile* tiles[TOTAL_TILES];
 
 	// Locations of Tile Sprites on SS texture 
     SDL_Rect tileSprites[TYLE_TYPES];
@@ -53,7 +52,7 @@ private:
     SDL_Renderer *geTileRenderer;
 
 	// SDL_Texture that holds the Tile SS
-    MyTexture tileSetSS;
+    SDL_Texture* tileSetSS;
     
 };
 

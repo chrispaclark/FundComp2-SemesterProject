@@ -4,12 +4,16 @@
 //  Zelda
 //  Copyright (c) 2014 John Lake. All rights reserved.
 
-#include "Sprite.h"
+#include <iostream>
+
 #include "SDL.h"
 #include "SDL_image.h"
-#include <iostream>
+
+#include "Sprite.h"
 #include "Boundary.h"
 #include "Tile.h"
+#include "Functions.h"
+
 using namespace std;
 
 Sprite::Sprite()
@@ -103,6 +107,10 @@ void Sprite::loadBMPForTexture(const char * file){
     //Gets other types of files:
 void Sprite::loadIMGForTexture(const char *file){
     tex = IMG_LoadTexture(geSpriteRenderer, file);
+	if (tex == nullptr)
+	{
+		logSDLError(cout, "IMG_LoadTexture");
+	}
 }
 
 void Sprite::setRenderer(SDL_Renderer *rend){
@@ -197,14 +205,19 @@ void Sprite::setDest(int xL, int yL, int width, int height){
 }
 
 
-void Sprite::setFlip(SDL_RendererFlip fl){
+void Sprite::setFlip(SDL_RendererFlip fl)
+{
     flip = fl;
 }
 
-SDL_RendererFlip Sprite::getFlip(){
+SDL_RendererFlip Sprite::getFlip()
+{
     return flip;
 }
 
-int Sprite::isColliding(){ return colliding;}
+int Sprite::isColliding()
+{ 
+	return colliding;
+}
 
 

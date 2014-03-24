@@ -6,23 +6,20 @@
 //  Copyright (c) 2014 John Lake. All rights reserved.
 //
 
-#include "Map.h"
+
 #include <string>
+#include <fstream>
+
 #include "SDL.h"
 #include "SDL_image.h"
-#include <fstream>
+
+#include "Map.h"
+
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
 Map::Map()
 {
-	//// Load the texture to be used as the tile sprite sheet
-	//tileSetSS = IMG_LoadTexture(geTileRenderer, "Sprites/ZeldaBGSpriteSheet-LA.png");
-	//if (tileSetSS == nullptr)
-	//{
-	//	cout << "Error loading Tile Sprite Sheet! " << SDL_GetError() << endl;
-	//}
-
 	// Define the the locations of the tile sprites on the SS
 	initializeTileSprites();
 }
@@ -365,21 +362,61 @@ int Map::touchesWall(Player &p){
 }
 
 
-void Map::setRenderer(SDL_Renderer *ren)
+void Map::setRenderer(SDL_Renderer *geRenderer)
 {
-	//Points the map renderer to the GameEngine Renderer passed in
-    geTileRenderer = ren;
+	geTileRenderer = geRenderer;
+
+	if (geTileRenderer == nullptr)
+	{
+		cout << "Error: *geRenderer failed to pass to *geTileRenderer!" << endl;
+		SDL_Delay(3000);
+		exit(2);
+	}
 }
 
 void Map::renderBackground()
 {
+	if (geTileRenderer == nullptr)
+	{
+		cout << "ERROR!!! Printing tiles with null renderer!" << endl;
+		SDL_Delay(3000);
+		exit(2);
+	}
+
     for (int i = 0; i < TOTAL_TILES; i++)
     {
-        SDL_RenderCopy(geTileRenderer, tileSetSS.getTexture(), &tileSprites[tiles[i]->getTileType()], tiles[i]->getRect());
-    }
+        SDL_RenderCopy(geTileRenderer, tileSetSS, &tileSprites[tiles[i]->getTileType()], tiles[i]->getRect());
+	}
 }
 
-MyTexture Map::getTextureWrap()
+int Map::loadFromFile(string path)
 {
-	return tileSetSS;
+	//The final texture
+	SDL_Texture* newTexture = NULL;
+
+	//Load image at specified path
+	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+	if (loadedSurface == NULL)
+	{
+		logSDLError(cout, "IMG_Load");
+	}
+	else
+	{
+		//Color key image
+		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 255, 255, 255));
+
+		//Create texture from surface pixels
+		newTexture = SDL_CreateTextureFromSurface(geTileRenderer, loadedSurface);
+		if (newTexture == NULL)
+		{
+			logSDLError(cout, "CreateTextureFromSurface");
+		}
+
+		//Get rid of old loaded surface
+		SDL_FreeSurface(loadedSurface);
+	}
+
+	//Return success
+	tileSetSS = newTexture;
+	return tileSetSS != NULL;
 }

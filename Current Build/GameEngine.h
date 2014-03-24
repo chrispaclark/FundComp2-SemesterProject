@@ -37,9 +37,6 @@ public:
 	// destructor destroys SDL components and sets pointers to null
 	~GameEngine();
 
-	// Makes error logging easier
-	void logSDLError(ostream &os, const string &msg);
-
 	// initialize objects, SDL, etc
 	int initialize();
 
