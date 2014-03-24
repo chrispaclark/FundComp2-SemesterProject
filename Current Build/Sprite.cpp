@@ -12,12 +12,15 @@
 #include "Tile.h"
 using namespace std;
 
-Sprite::Sprite(){
+Sprite::Sprite()
+{
     width = 0;
     height = 0;
     alive = false;
     xCanvas = 0;
     yCanvas = 0;
+
+	geSpriteRenderer = nullptr;
 }
 
 Sprite::~Sprite(){
@@ -93,24 +96,24 @@ int Sprite::collidesWith(Tile *other){
 void Sprite::loadBMPForTexture(const char * file){
     SDL_Surface *sfc = nullptr;
     sfc = SDL_LoadBMP(file);
-    tex = SDL_CreateTextureFromSurface(r, sfc);
+    tex = SDL_CreateTextureFromSurface(geSpriteRenderer, sfc);
     SDL_FreeSurface(sfc);
 }
 
     //Gets other types of files:
 void Sprite::loadIMGForTexture(const char *file){
-    tex = IMG_LoadTexture(r, file);
+    tex = IMG_LoadTexture(geSpriteRenderer, file);
 }
 
 void Sprite::setRenderer(SDL_Renderer *rend){
-    (*this).r = rend;
+    (*this).geSpriteRenderer = rend;
 }
     //Render to the screen at location x,y, with the width/height set
 void Sprite::renderSprite(){
     setDest(getXScreenLocation(),getYScreenLocation(),getWidth(),getHeight());
     SDL_Rect dest = getDest();
     SDL_Rect source = getSource();
-    SDL_RenderCopyEx(r,tex, &source, &dest, 0, NULL, flip);
+    SDL_RenderCopyEx(geSpriteRenderer,tex, &source, &dest, 0, NULL, flip);
 
 }
 

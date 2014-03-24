@@ -10,8 +10,10 @@
 
 #include <iostream>
 #include "Sprite.h"
-#include "AnimatedSprite.h"
-class AnimatedSprite : public Sprite{
+
+
+class AnimatedSprite : public Sprite
+{
 public:
     AnimatedSprite(); 
     void setNumFrames(int);

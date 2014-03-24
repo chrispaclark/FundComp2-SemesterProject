@@ -9,7 +9,9 @@
 #include <iostream> 
 using namespace std; 
 
-AnimatedSprite::AnimatedSprite(){
+AnimatedSprite::AnimatedSprite()
+: Sprite()
+{
     numFrames = 1;
 }
 

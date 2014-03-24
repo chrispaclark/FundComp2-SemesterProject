@@ -13,7 +13,7 @@ Music::Music(){
     }
     
     //Load music
-    bgMusic = Mix_LoadMUS( "Sounds/LostWoodsDubstep.wav" );
+    bgMusic = Mix_LoadMUS( "Sounds/KokiriForest.mp3" );
     if( bgMusic == NULL )
     {
         printf( "Failed to load music! SDL_mixer Error: %s\n", Mix_GetError() );

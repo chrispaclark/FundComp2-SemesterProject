@@ -12,7 +12,7 @@ GameEngine::GameEngine()
 		cout << "Error Initializing GameEngine Class Object!!!" << endl;
 		exit(1);
 	}
-	
+	Link.setRenderer(geRenderer);
 }
 
 GameEngine::~GameEngine()

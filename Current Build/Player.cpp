@@ -10,8 +10,11 @@
 #include <iostream> 
 using namespace std;
 
+Player::Player()
+: AnimatedSprite()
+{
 
-
+}
 
     //Used in collisions, so that a sprite doesn't get stuck in a wall.
 void Player::undoUpdatePosition(){

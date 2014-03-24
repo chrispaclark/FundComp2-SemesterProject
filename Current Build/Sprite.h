@@ -17,7 +17,7 @@ class Sprite{
 
     
 public:
-        //Constructor & Deconstructor
+    //Constructor & Deconstructor
     Sprite();
     ~Sprite();
 
@@ -112,7 +112,7 @@ protected:
     //SDL specific:
     SDL_Rect src; //Where in the spritesheet the sprite comes from
     SDL_Rect dst; //Where on the screen the sprite will go (same as x, y, width, and height.)
-    SDL_Renderer *r;   //The Rendering context of the sprite.
+    SDL_Renderer *geSpriteRenderer;   //The Rendering context of the sprite.
     SDL_RendererFlip flip;
     SDL_Texture *tex;  //What the sprite looks like
     };

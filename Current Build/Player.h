@@ -14,17 +14,17 @@
 
 class Player : public AnimatedSprite{
 public:
+	// Constructor
+	Player();
 
+	void undoUpdatePosition();
 
-    void undoUpdatePosition();
-
-    
 private:
     bool hasJumped;
     int jumpBase;
     int currentPlatform; 
 
-        //Weapons, attributes, etc.
+    //Weapons, attributes, etc.
 };
 
 #endif /* defined(__Snow__Player__) */
