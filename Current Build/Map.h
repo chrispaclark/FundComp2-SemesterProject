@@ -18,16 +18,36 @@
 class Map{
 
 public:
+	// Constructor Initializes tile locations on SS
+	Map(SDL_Renderer*);
+
+	// Set the renderer that will be used by the map class
     void setRenderer(SDL_Renderer*);
+
+	// Draw the background of tiles to the renderer
     void renderBackground();
+
+	// Read in map file (tile locations on screen)
     int mapTiles(string);
-    void initializeTileSprites();
+
+	// Ran in constructor, stores locations of tile sprites in array of SDL_Rects
+	void initializeTileSprites();
+
+	// Checks to see if the player is touching a wall tile
     int touchesWall(Player&);
+
 private:
+	// Stores the tile map (drawn to screen)
     Tile * tiles[TOTAL_TILES];
+
+	// Locations of Tile Sprites on SS texture 
     SDL_Rect tileSprites[TYLE_TYPES];
-    SDL_Renderer *r;
-    SDL_Texture * tileSetSS;
+
+	// Renderer used for drawing tiles (pointer to same one in GameEngine
+    SDL_Renderer *geTileRenderer;
+
+	// SDL_Texture that holds the Tile SS
+    SDL_Texture *tileSetSS;
     
 };
 

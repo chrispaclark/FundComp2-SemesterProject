@@ -1,10 +1,7 @@
-//
 //  Music.cpp
-//  Zelda
 //
-//  Created by Christian Clark on 3/24/14.
+//  Created by Christian Clark, Thomas Deranek, Garrett Duffy, and John Lake
 //  Copyright (c) 2014 John Lake. All rights reserved.
-//
 
 #include "Music.h"
 

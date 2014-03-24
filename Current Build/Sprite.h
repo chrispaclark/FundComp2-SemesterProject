@@ -109,7 +109,7 @@ protected:
     Boundary bounds;
 
 
-        //SDL specific:
+    //SDL specific:
     SDL_Rect src; //Where in the spritesheet the sprite comes from
     SDL_Rect dst; //Where on the screen the sprite will go (same as x, y, width, and height.)
     SDL_Renderer *r;   //The Rendering context of the sprite.

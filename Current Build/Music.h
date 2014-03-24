@@ -14,15 +14,16 @@
 #include <stdio.h>
 #include <string>
 
-#endif /* defined(__Lab8__Music__) */
 
 class Music
 {
 public:
-    Music();    //constructor
-    ~Music();   //deconstructor
+    Music();		//constructor
+    ~Music();		//deconstructor
     void play();    //plays music
     void stop();    //stops music
 private:
     Mix_Music * bgMusic = NULL;    //the music that will be played
 };
+
+#endif

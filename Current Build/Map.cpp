@@ -14,73 +14,87 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
+Map::Map(SDL_Renderer* geRenderer)
+{
+	// Set up map renderer
+	setRenderer(geRenderer);
+
+	// Load the texture to be used as the tile sprite sheet
+	tileSetSS = IMG_LoadTexture(geTileRenderer, "Sprites/ZeldaBGSpriteSheet-LA.png");
+
+	// Define the the locations of the tile sprites on the SS
+	initializeTileSprites();
+}
+
 int Map::mapTiles(const string s)
 {
-        // Success flag
+    // Success flag
 	int success = true;
 
-        // Open the map
+    // Open the map
 	ifstream map(s.c_str());
 	ifstream* pmap = &map;
 
-        //if the map failed to load
+    //if the map failed to load
 	if (pmap == nullptr)
-        {
+    {
 		cout << "Failed to load tile map" << endl;
 		success = false;
-        }
+    }
 	else
         {
             // Initialize the tiles
             // Set initial values for tile placement
-		int x = 0, y = 0;
-		for (int i = 0; i < TOTAL_TILES; i++)
+			int x = 0, y = 0;
+			for (int i = 0; i < TOTAL_TILES; i++)
             {
                 //Determines what kind of tile will be made
-			int tileType;
+				int tileType;
+
                 // Read tile from map
-			map >> tileType;
+				map >> tileType;
                 //cout << i << ": " << tileType << endl;
 
-                // Check to see if there was a problem reading the map
+            // Check to see if there was a problem reading the map
 			if (map.fail())
-                {
-                    // Stop loading map
+            {
+                // Stop loading map
 				cout << "Error reading from map! Unexpected end of file" << endl;
 				success = false;
 				break;
-                }
+            }
 
-                // if the map reads in a valid tile number
+            // if the map reads in a valid tile number
 			if ((tileType >= 0) && (tileType < TYLE_TYPES))
-                {
+            {
 				tiles[i] = new Tile(x, y, tileType);
-                }
+            }
 			else
-                {
-                    //	cout << "Error loading map: Invalid tile type at" << i << endl;
+            {
+				//	cout << "Error loading map: Invalid tile type at" << i << endl;
 				success = false;
 				break;
-                }
+            }
 
-                // Move to next column
+            // Move to next column
 			x += TILE_SIDELENGTH;
 
-                // Move to next row
+            // Move to next row
 			if (x >= SCREEN_WIDTH)
-                {
+            {
 				x = 0;
 				y += TILE_SIDELENGTH;
-                }
-            }	// end for loop
-        }
+            }
+        }	// end for loop
+
+    }
 	return success;
 }
 
 
-void Map::initializeTileSprites(){
-
-    tileSetSS = IMG_LoadTexture(r,"Sprites/ZeldaBGSpriteSheet-LA.png");
+void Map::initializeTileSprites()
+{
+	// Store the locations of each tile in order of: xpos, ypos, width, height
 
     tileSprites[TILE_GREENGRASS].x = 222;
     tileSprites[TILE_GREENGRASS].y = 154;
@@ -337,23 +351,29 @@ void Map::initializeTileSprites(){
     tileSprites[TILE_TREEONGREEN_TR].w = TILE_SS_SIDELENGTH;
     tileSprites[TILE_TREEONGREEN_TR].h = TILE_SS_SIDELENGTH;
 }
+
 int Map::touchesWall(Player &p){
-    for(int i = 0;i< TOTAL_TILES;i++){
-        if(p.collidesWith(tiles[i]) && tiles[i]->getTileType() >= 2 && tiles[i]->getTileType() <= 8){
+    for(int i = 0;i< TOTAL_TILES;i++)
+	{
+		// if the player is colliding with a wall type tile (consider seperating to two ifs to make clearer)
+        if(p.collidesWith(tiles[i]) && tiles[i]->getTileType() >= 2 && tiles[i]->getTileType() <= 8)
             return 1;
-        }
+        
     }
     return 0;
 }
 
 
-void Map::setRenderer(SDL_Renderer *r){
-    this->r = r;
+void Map::setRenderer(SDL_Renderer *ren)
+{
+	//Points the map renderer to the GameEngine Renderer passed in
+    this->geTileRenderer = ren;
 }
 
-void Map::renderBackground(){
+void Map::renderBackground()
+{
     for (int i = 0; i < TOTAL_TILES; i++)
     {
-        SDL_RenderCopy(r, tileSetSS, &tileSprites[tiles[i]->getTileType()], tiles[i]->getRect());
+        SDL_RenderCopy(geTileRenderer, tileSetSS, &tileSprites[tiles[i]->getTileType()], tiles[i]->getRect());
     }
 }
